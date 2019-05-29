@@ -41,6 +41,7 @@ class(NULL)
 setwd("d:/Workspace/R_Data_Analysis/Part3/data")
 txt1 <- read.csv("factor_test.csv")
 txt1
+View(txt1)
 
 factor1 <- factor(txt1$blood)
 factor1
@@ -48,4 +49,5 @@ gender1 <- factor(txt1$sex)
 gender1
 summary(factor1)
 summary(gender1)
-View(txt1)
+
+
