@@ -47,6 +47,8 @@ write.csv(Fruits, "Fruits_sql.csv", quote=F, row.names=F)
 fruits_2 <-read.csv.sql("Fruits_sql.csv",
                         sql="SELECT * FROM file WHERE Year = 2008")
 fruits_2
+fruits_3 <- subset(Fruits, Fruits$Year==2008)
+fruits_3
 
 install.packages("XLConnect") 
 installed.packages()
