@@ -39,5 +39,55 @@ pemp <- c('Angela Bassett','Angela Bassett','Jessica Lange','Winona Ryder','Wino
           'Angela Bassett','Emma Thompson', 'Julia Roberts','Angela Bassett',
           'Meryl Streep','Susan Sarandon')
 emp <- data.frame(이름=name,상사이름=pemp)
-d3SimpleNetwork(emp, width=600, height=600, file="c:/temp/d3.html")
+d3SimpleNetwork(emp, width=600, height=600, file="graph/d3.html")
 
+g <- read.csv("data/군집분석.csv", head=T)
+graph1 <- data.frame(학생=g$학생, 교수=g$교수)
+g <- graph.data.frame(graph1, directed=T)
+plot(g, layout=layout.fruchterman.reingold, vertex.size=2,
+     edge.arrow.size=0.5, vertex.color="green", vertex.label=NA)
+# 모양 바꾸어서 출력하기
+plot(g, layout=layout.kamada.kawai, vertex.size=2,
+     edge.arrow.size=0.5, vertex.label=NA)
+
+V(g)$name
+gubun1 <- V(g)$name
+gubun1
+library(stringr)
+gubun <- str_sub(gubun1, start=1, end=1)
+gubun
+
+colors <- c()
+sizes <- c()
+for (i in 1:length(gubun)) {
+  if (gubun[i] == 'S') {
+    colors <- c(colors, 'red')
+    sizes <- c(sizes, 2)
+  } else {
+    colors <- c(colors, 'green')
+    sizes <- c(sizes, 6)
+  }
+}
+plot(g, layout=layout.fruchterman.reingold, vertex.size=sizes,
+     edge.arrow.size=0.5, vertex.color=colors)
+plot(g, layout=layout.fruchterman.reingold, vertex.size=sizes,
+     edge.arrow.size=0.5, vertex.color=colors, vertex.label=NA)
+plot(g, layout=layout.fruchterman.reingold, vertex.size=sizes,
+     edge.arrow.size=0, vertex.color=colors, vertex.label=NA)
+
+# 학생과 교수의 도형 모양 다르게 하고 화살표 없애고 색깔도 다르게 하기
+plot(g, layout=layout.kamada.kawai, vertex.size=sizes,
+     edge.arrow.size=0, vertex.color=colors, vertex.label=NA)
+shapes <- c()
+for (i in 1:length(gubun)) {
+  if (gubun[i] == 'S')
+    shapes <- c(shapes,"circle")
+  else 
+    shapes <- c(shapes,"square")
+}
+plot(g, layout=layout.kamada.kawai, vertex.size=sizes,
+     edge.arrow.size=0, vertex.color=colors,
+     vertex.label=NA, vertex.shape=shapes)
+
+virus1 <- read.csv("data/메르스전염현황.csv", header=T)
+d3SimpleNetwork(virus1, file="graph/mers.html")
