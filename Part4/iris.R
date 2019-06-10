@@ -1,6 +1,7 @@
 # iris 데이터로 그래프 그리기
 #1. 산점도
 library(dplyr)
+View(iris)
 iris_setosa <- filter(iris, Species == 'setosa')
 iris_versicolor <- filter(iris, Species == 'versicolor')
 iris_virginica <- filter(iris, Species == 'virginica')
@@ -36,7 +37,7 @@ mean_of_iris_versicolor <- iris_versicolor %>%
 mean_of_iris_virginica <- iris_virginica %>%
   summarise_each(list(mean), Sepal.Length, Sepal.Width,
                  Petal.Length, Petal.Width)
-barplot(as.matrix(mean_of_iris_setosa))
+# barplot(as.matrix(mean_of_iris_setosa))
 mean_of_iris <- t(rbind(mean_of_iris_setosa,
                       mean_of_iris_versicolor,
                       mean_of_iris_virginica))
