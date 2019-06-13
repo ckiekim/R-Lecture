@@ -32,6 +32,8 @@ ggplot(bus09, aes(x=정류소명)) +
   geom_vline(xintercept=seq(0, 30, 5), 
              color='grey', linetype = 'dashed', size=0.1)
 
+bus09$정류소명 <- paste(1:length(bus09$정류소명),'.',bus09$정류소명, sep='')
+bus09$정류소명 <- factor(bus09$정류소명, levels=unique(bus09$정류소명))
 mBus <- melt(bus09, id=c('정류소명'),
              variable.name='구분', value.name='인원')
 mBus <- mBus %>%
