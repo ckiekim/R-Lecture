@@ -11,6 +11,8 @@ windowsFonts(malgun = "맑은 고딕")
 theme_update(text = element_text(family = "malgun"))
 
 bus09 <- read.csv('마포09번이용현황.csv')
+
+# Wide 형태
 length(bus09$승차인원)
 bus09$number <- c(1:length(bus09$승차인원))
 stop <- bus09$정류소명
@@ -32,6 +34,7 @@ ggplot(bus09, aes(x=정류소명)) +
   geom_vline(xintercept=seq(0, 30, 5), 
              color='grey', linetype = 'dashed', size=0.1)
 
+# Long 형태
 bus09$정류소명 <- paste(1:length(bus09$정류소명),'.',bus09$정류소명, sep='')
 bus09$정류소명 <- factor(bus09$정류소명, levels=unique(bus09$정류소명))
 mBus <- melt(bus09, id=c('정류소명'),
