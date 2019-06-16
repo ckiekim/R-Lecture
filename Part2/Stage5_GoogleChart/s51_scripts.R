@@ -190,16 +190,17 @@ install.packages("httr")
 install.packages("XML")
 library(XML)
 library(googleVis)
-library("httr")
+library(httr)
 cafile <- system.file("CurlSSL", "cacert.pem", package = "RCurl")
 page <- GET(
   "https://en.wikipedia.org/", 
   path="wiki/World_population", 
   config(cainfo = cafile))
 x <- content(page, as ='text')
+str(x)
 tab <- sub('.*(<table class="grid".*?>.*</table>).*', '\\1', x)
 pop_table <- readHTMLTable(tab)
-str(pop_table)
+str(pop_table); length(pop_table)
 pop_table
 pop_table <- readHTMLTable(tab,which=1)  # 1번째 테이블입니다.
 #==============================================================
