@@ -45,6 +45,7 @@ iris_s <- iris %>%
 iris_s
 ggplot(iris_s, aes(y=Sepal.Width)) +
   geom_boxplot()
+# boxplot(iris_s$Sepal.Width)
 summary(iris_s)
 
 iris_s$after <- ifelse(2.5 < iris_s$Sepal.Width & iris_s$Sepal.Width < 4.25, 
@@ -70,7 +71,8 @@ mpg_suv <- mpg %>%
   head(7)
 mpg_suv
 
-ggplot(mpg_suv, aes(x=reorder(manufacturer, -mean_cty), y=mean_cty, fill=manufacturer)) +
+ggplot(mpg_suv, aes(x=reorder(manufacturer, -mean_cty), 
+                    y=mean_cty, fill=manufacturer)) +
   geom_col()                    # geom_bar(stat='identity')
 
 # 8
@@ -87,7 +89,9 @@ ggplot(df_clarity, aes(x=clarity, y=mean_price, fill=clarity)) +
 # 9
 bb <- read.csv('D:/Workspace/R_Data_Analysis/exam/야구성적.csv')
 bb <- bb %>%
-  mutate(OPS=출루율+장타율, 연봉대비OPS=OPS/연봉*100)
+  mutate(OPS=출루율+장타율) %>% 
+  mutate(연봉대비OPS=OPS/연봉*100)
+  # mutate(OPS=출루율+장타율, 연봉대비OPS=OPS/연봉*100)
 head(bb)
 
 library(extrafont)
